@@ -1,8 +1,9 @@
 """Representation of a Toy Robot"""
 
 from toy_robot_simulator.model.position import (
-    calculate_new_position,
+    calculate_new_position_after_move,
     Direction,
+    Position,
     rotate_left,
     rotate_right,
 )
@@ -14,32 +15,27 @@ class Robot:
 
     def __init__(self, table: Table):
         self.is_placed = False
-        self.x = 0
-        self.y = 0
-        self.direction = Direction.NORTH
+        self.position = Position(0, 0, Direction.NORTH)
         self.map = table
 
-    def place(self, x: int, y: int, direction: Direction) -> None:
+    def place(self, position: Position) -> None:
         """Place the robot on the table"""
-        self.x = x
-        self.y = y
-        self.direction = direction
+        self.position = position
         self.is_placed = True
 
     def move(self) -> None:
         """Move the robot one unit forward in its current direction."""
         if self.is_placed:
-            x, y = calculate_new_position(self.x, self.y, self.direction)
-            if self.map.is_valid_position(x, y):
-                self.x = x
-                self.y = y
+            new_position = calculate_new_position_after_move(self.position)
+            if self.map.is_valid_position(new_position.x, new_position.y):
+                self.position = new_position
 
     def left(self) -> None:
         """Rotate the robot 90 degrees to the left."""
         if self.is_placed:
-            self.direction = rotate_left(self.direction)
+            self.position = rotate_left(self.position)
 
     def right(self) -> None:
         """Rotate the robot 90 degrees to the right."""
         if self.is_placed:
-            self.direction = rotate_right(self.direction)
+            self.position = rotate_right(self.position)

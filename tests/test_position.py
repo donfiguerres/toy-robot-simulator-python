@@ -2,7 +2,13 @@
 
 import pytest
 
-from toy_robot_simulator.model.position import Direction, rotate_left, rotate_right
+from toy_robot_simulator.model.position import (
+    calculate_new_position_after_move,
+    Direction,
+    Position,
+    rotate_left,
+    rotate_right,
+)
 
 
 @pytest.mark.parametrize(
@@ -16,7 +22,11 @@ from toy_robot_simulator.model.position import Direction, rotate_left, rotate_ri
 )
 def test_left(direction, expected):
     """Test the left direction."""
-    assert rotate_left(direction) == expected
+    position = Position(1, 1, direction)
+    new_position = rotate_left(position)
+    assert new_position.x == 1
+    assert new_position.y == 1
+    assert new_position.direction == expected
 
 
 @pytest.mark.parametrize(
@@ -30,4 +40,28 @@ def test_left(direction, expected):
 )
 def test_right(direction, expected):
     """Test the right direction."""
-    assert rotate_right(direction) == expected
+    position = Position(1, 1, direction)
+    new_position = rotate_right(position)
+    assert new_position.x == 1
+    assert new_position.y == 1
+    assert new_position.direction == expected
+
+
+@pytest.mark.parametrize(
+    ("old_position", "expected_position"),
+    (
+        (Position(0, 0, Direction.NORTH), Position(0, 1, Direction.NORTH)),
+        (Position(1, 0, Direction.NORTH), Position(1, 1, Direction.NORTH)),
+        (Position(0, 1, Direction.SOUTH), Position(0, 0, Direction.SOUTH)),
+        (Position(1, 0, Direction.EAST), Position(2, 0, Direction.EAST)),
+        (Position(0, 1, Direction.WEST), Position(2, 0, Direction.WEST)),
+        (Position(0, 0, Direction.WEST), Position(-1, 0, Direction.WEST)),
+        (Position(0, 0, Direction.SOUTH), Position(0, -1, Direction.SOUTH)),
+    ),
+)
+def test_move(old_position, expected_position):
+    """Test the move."""
+    new_position = calculate_new_position_after_move(old_position)
+    new_position.x = expected_position.x
+    new_position.y = expected_position.y
+    new_position.direction = expected_position.direction

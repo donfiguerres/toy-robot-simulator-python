@@ -1,38 +1,51 @@
 """Handles application logic"""
 
+from typing import List, Optional
+from toy_robot_simulator.config import MAX_LENGTH, MAX_WIDTH
+from toy_robot_simulator.exception import ParsingError
 from toy_robot_simulator.model.command import Command
-from toy_robot_simulator.model.position import Direction
 from toy_robot_simulator.model.robot import Robot
+from toy_robot_simulator.model.table import Table
 from toy_robot_simulator.parser import parse_line, ParsedCommand
 
 
 class CommandInput:
     """Abstraction layer for user command input."""
 
+    def __init__(self, commands: Optional[List[ParsedCommand]] = None) -> None:
+        """Create a command input object.
+
+        Args:
+            commands: Optional list of ParsedCommand objects.
+        """
+        self._commands = commands
+
     def get_input(self) -> ParsedCommand:
         """Gets user input and returns a ParsedCommand"""
+        if self._commands:
+            command = self._commands.pop(0)
+            return command
         return parse_line(input())
 
 
-def main_controller() -> None:
+def main_controller(command_input: CommandInput) -> None:
     """Main application controller"""
-    command_input = CommandInput()
-    robot = Robot()
+    table = Table(MAX_LENGTH, MAX_WIDTH)
+    robot = Robot(table)
     while True:
-        command = command_input.get_input()
+        try:
+            command = command_input.get_input()
 
-        if command.command == Command.PLACE:
-            robot.place(command.args[0], command.args[1], command.args[2])
+            if command.command == Command.PLACE:
+                robot.place(command.args[0], command.args[1], command.args[2])
+            elif command.command == Command.MOVE:
+                robot.move()
+            elif command.command == Command.LEFT:
+                robot.left()
+            elif command.command == Command.RIGHT:
+                robot.right()
 
-        if command.command == "exit":
-            break
-        if command.command == "place":
-            print("Place command")
-        if command.command == "move":
-            print("Move command")
-        if command.command == "left":
-            print("Left command")
-        if command.command == "right":
-            print("Right command")
-        if command.command == "report":
-            print("Report command")
+        # This application needs to be robust against bad user input so we just ignore
+        # bad input then continue.
+        except ParsingError:
+            pass

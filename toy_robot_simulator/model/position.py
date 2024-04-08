@@ -13,46 +13,59 @@ class Direction(Enum):
     WEST = "WEST"
 
 
-def rotate_left(current_direction: Direction) -> Direction:
+class Position:
+    """Domain model representation of a robot's position"""
+
+    def __init__(self, x: int, y: int, direction: Direction):
+        self.x = x
+        self.y = y
+        self.direction = direction
+
+
+def rotate_left(position: Position) -> Position:
     """Return the direction to the left of the given current direction.
 
     Args:
-        current_direction: The current direction
+        position: current position
 
     Returns:
-        The direction to the left of the current direction
+        new position after rotating to the left
     """
+    current_direction = position.direction
     directions = ["NORTH", "EAST", "SOUTH", "WEST"]
     current_index = directions.index(current_direction.value)
-    return Direction(directions[(current_index - 1) % 4])
+    new_direction = Direction(directions[(current_index - 1) % 4])
+    return Position(position.x, position.y, new_direction)
 
 
-def rotate_right(current_direction: Direction) -> Direction:
+def rotate_right(position: Position) -> Position:
     """Return the direction to the right of the given current direction.
 
      Args:
-        current_direction: The current direction
+        position: current position
 
     Returns:
-        The direction to the right of the current direction
+        new position after rotating to the right
     """
+    current_direction = position.direction
     directions = ["NORTH", "EAST", "SOUTH", "WEST"]
     current_index = directions.index(current_direction.value)
-    return Direction(directions[(current_index + 1) % 4])
+    new_direction = Direction(directions[(current_index + 1) % 4])
+    return Position(position.x, position.y, new_direction)
 
 
-def calculate_new_position(x: int, y: int, direction: Direction) -> Tuple[int, int]:
+def calculate_new_position_after_move(position: Position) -> Position:
     """Calculate the next position the robot if it moves."""
-    x = x
-    y = y
+    x = position.x
+    y = position.y
 
-    if direction == Direction.NORTH:
+    if position.direction == Direction.NORTH:
         y += 1
-    elif direction == Direction.SOUTH:
+    elif position.direction == Direction.SOUTH:
         y -= 1
-    elif direction == Direction.EAST:
+    elif position.direction == Direction.EAST:
         x += 1
-    elif direction == Direction.WEST:
+    elif position.direction == Direction.WEST:
         x -= 1
 
-    return x, y
+    return Position(x, y, position.direction)
