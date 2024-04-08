@@ -1,7 +1,7 @@
 """Model definitions for where a toy robot can move around"""
 
 
-class Map:
+class Table:
     """Representation of an environment where a toy robot can move."""
 
     def __init__(self, width: int, height: int):

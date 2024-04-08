@@ -2,7 +2,7 @@
 
 import pytest
 
-from toy_robot_simulator.model.map import Map
+from toy_robot_simulator.model.table import Table
 
 
 @pytest.mark.parametrize(
@@ -17,6 +17,6 @@ from toy_robot_simulator.model.map import Map
         (4, -1, False),
     ),
 )
-def test_map(x, y, expected):
-    map = Map(5, 5)
-    assert map.is_valid_position(x, y) == expected
+def test_table(x, y, expected):
+    table = Table(5, 5)
+    assert table.is_valid_position(x, y) == expected

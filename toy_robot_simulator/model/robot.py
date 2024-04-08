@@ -6,13 +6,13 @@ from toy_robot_simulator.model.position import (
     rotate_left,
     rotate_right,
 )
-from toy_robot_simulator.model.map import Map
+from toy_robot_simulator.model.table import Table
 
 
 class Robot:
     """Class representing a Toy Robot"""
 
-    def __init__(self, map: Map):
+    def __init__(self, map: Table):
         self.is_placed = False
         self.x = 0
         self.y = 0
