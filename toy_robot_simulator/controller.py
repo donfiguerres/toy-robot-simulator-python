@@ -1,11 +1,11 @@
 """Handles application logic"""
 
 from typing import List, Optional
-from toy_robot_simulator.config import MAX_LENGTH, MAX_WIDTH
+
 from toy_robot_simulator.exception import ParsingError
 from toy_robot_simulator.model.command import Command
 from toy_robot_simulator.model.robot import Robot
-from toy_robot_simulator.model.table import Table
+from toy_robot_simulator.model.position import Position
 from toy_robot_simulator.parser import parse_line, ParsedCommand
 
 
@@ -19,25 +19,31 @@ class CommandInput:
             commands: Optional list of ParsedCommand objects.
         """
         self._commands = commands
+        self._get_from_stdin = False if commands else True
 
-    def get_input(self) -> ParsedCommand:
+    def get_input(self) -> Optional[ParsedCommand]:
         """Gets user input and returns a ParsedCommand"""
+        if self._get_from_stdin:
+            return parse_line(input())
+
         if self._commands:
             command = self._commands.pop(0)
             return command
-        return parse_line(input())
+        # None return to signifies end of input
+        return None
 
 
-def main_controller(command_input: CommandInput) -> None:
+def main_controller(command_input: CommandInput, robot: Robot) -> None:
     """Main application controller"""
-    table = Table(MAX_LENGTH, MAX_WIDTH)
-    robot = Robot(table)
     while True:
         try:
             command = command_input.get_input()
+            if command is None:
+                break
 
             if command.command == Command.PLACE:
-                robot.place(command.args[0], command.args[1], command.args[2])
+                position = Position(command.args[0], command.args[1], command.args[2])
+                robot.place(position)
             elif command.command == Command.MOVE:
                 robot.move()
             elif command.command == Command.LEFT:
