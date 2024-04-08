@@ -1,7 +1,6 @@
 """Domain model representation of positions and movements"""
 
 from enum import Enum
-from typing import Tuple
 
 
 class Direction(Enum):
