@@ -39,3 +39,10 @@ class Robot:
         """Rotate the robot 90 degrees to the right."""
         if self.is_placed:
             self.position = rotate_right(self.position)
+
+    def report(self) -> None:
+        """Print the current position of the robot."""
+        if self.is_placed:
+            print(
+                f"{self.position.x},{self.position.y},{self.position.direction.value}"
+            )

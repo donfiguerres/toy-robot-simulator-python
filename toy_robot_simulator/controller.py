@@ -50,6 +50,8 @@ def main_controller(command_input: CommandInput, robot: Robot) -> None:
                 robot.left()
             elif command.command == Command.RIGHT:
                 robot.right()
+            elif command.command == Command.REPORT:
+                robot.report()
 
         # This application needs to be robust against bad user input so we just ignore
         # bad input then continue.
