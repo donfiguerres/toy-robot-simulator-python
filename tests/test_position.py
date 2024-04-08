@@ -2,7 +2,7 @@
 
 import pytest
 
-from toy_robot_simulator.model.direction import Direction, left, right
+from toy_robot_simulator.model.position import Direction, rotate_left, rotate_right
 
 
 @pytest.mark.parametrize(
@@ -16,7 +16,7 @@ from toy_robot_simulator.model.direction import Direction, left, right
 )
 def test_left(direction, expected):
     """Test the left direction."""
-    assert left(direction) == expected
+    assert rotate_left(direction) == expected
 
 
 @pytest.mark.parametrize(
@@ -30,4 +30,4 @@ def test_left(direction, expected):
 )
 def test_right(direction, expected):
     """Test the right direction."""
-    assert right(direction) == expected
+    assert rotate_right(direction) == expected

@@ -1,7 +1,6 @@
 """Application entry point"""
 
-# from toy_robot_simulator.config import MAX_LENGTH, MAX_WIDTH
-# from toy_robot_simulator.model.map import Map
+from toy_robot_simulator.controller import main_controller
 
 
 def main():
@@ -11,4 +10,4 @@ def main():
     user input and output
     """
     print("Initializing toy robot simulator")
-    # map = Map(MAX_LENGTH, MAX_WIDTH)
+    main_controller()

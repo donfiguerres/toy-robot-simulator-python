@@ -4,7 +4,7 @@ import pytest
 
 from toy_robot_simulator.exception import ParsingError
 from toy_robot_simulator.model.command import Command
-from toy_robot_simulator.model.direction import Direction
+from toy_robot_simulator.model.position import Direction
 from toy_robot_simulator.parser import parse_line, ParsedCommand
 
 
