@@ -12,18 +12,19 @@ from toy_robot_simulator.model.table import Table
 class Robot:
     """Class representing a Toy Robot"""
 
-    def __init__(self, map: Table):
+    def __init__(self, table: Table):
         self.is_placed = False
         self.x = 0
         self.y = 0
         self.direction = Direction.NORTH
-        self.map = map
+        self.map = table
 
     def place(self, x: int, y: int, direction: Direction) -> None:
         """Place the robot on the table"""
         self.x = x
         self.y = y
         self.direction = direction
+        self.is_placed = True
 
     def move(self) -> None:
         """Move the robot one unit forward in its current direction."""
