@@ -20,8 +20,9 @@ class Robot:
 
     def place(self, position: Position) -> None:
         """Place the robot on the table"""
-        self.position = position
-        self.is_placed = True
+        if self.map.is_valid_position(position.x, position.y):
+            self.position = position
+            self.is_placed = True
 
     def move(self) -> None:
         """Move the robot one unit forward in its current direction."""
