@@ -6,6 +6,8 @@ The parser is designed to be robust to user input and will ignore unknown comman
 from logging import getLogger
 from typing import Any, List, Optional
 
+
+from toy_robot_simulator.exception import ParsingError
 from toy_robot_simulator.model.command import Command
 from toy_robot_simulator.model.direction import Direction
 
@@ -36,19 +38,22 @@ def parse_line(command_line: str) -> ParsedCommand:
 
         if enum_command == Command.PLACE:
             if len(unparsed_args) != 1:
-                raise ValueError("Invalid command arguments")
+                raise ParsingError("Invalid command arguments")
 
             args = list(map(str.strip, unparsed_args[0].split(",")))
             if len(args) != 3:
-                raise ValueError("Invalid command arguments")
+                raise ParsingError("Invalid command arguments")
 
             x = int(args[0])
             y = int(args[1])
-            direction = Direction(args[2])
+            direction = Direction(args[2].upper())
             return ParsedCommand(enum_command, [x, y, direction])
+
+        if len(unparsed_args) > 0:
+            raise ParsingError("Invalid command arguments")
 
         return ParsedCommand(enum_command)
 
     except ValueError as error:
         LOG.error("Invalid command: %s", command_line)
-        raise ValueError("Invalid command") from error
+        raise ParsingError("Invalid command") from error
