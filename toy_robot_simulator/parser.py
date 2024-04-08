@@ -21,7 +21,14 @@ class ParsedCommand:
 
 
 def parse_line(command_line: str) -> ParsedCommand:
-    """Parse a line of input"""
+    """Parse a line of input
+
+    Args:
+        command_line: The command line to parse
+
+    Returns:
+        A parsed command
+    """
     try:
         command, *unparsed_args = command_line.split(maxsplit=1)
         command = command.upper()
