@@ -50,7 +50,7 @@ def test_parse_line(line, expected):
 
 
 @pytest.mark.parametrize(
-    ("input"),
+    ("command_line"),
     (
         "INVALID",
         "    INVALID   ",
@@ -60,7 +60,7 @@ def test_parse_line(line, expected):
         "REPORT LEFT",
     ),
 )
-def test_parse_line_invalid(input):
+def test_parse_line_invalid(command_line):
     """Test the parse_line function with an invalid command"""
     with pytest.raises(ParsingError):
-        parse_line(input)
+        parse_line(command_line)
