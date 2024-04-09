@@ -9,6 +9,7 @@ from toy_robot_simulator.parser import ParsedCommand
 
 
 def test_command_input(mocker):
+    """Test reading from input()"""
     mocker.patch("builtins.input", return_value="PLACE 0,0,NORTH")
     command_input = CommandInput()
 
