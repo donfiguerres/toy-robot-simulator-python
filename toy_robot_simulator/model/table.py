@@ -4,15 +4,15 @@
 class Table:
     """Representation of an environment where a toy robot can move."""
 
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: int, length: int):
         """Create a new map with the given dimensions.
 
         Args:
-            width: The width of the map (EAST to WEST)
-            height: The height of the map (NORTH to SOUTH)
+            width: width of the map - x-axis (EAST to WEST)
+            length: length of the map - y-axis (NORTH to SOUTH)
         """
         self.width = width
-        self.height = height
+        self.length = length
 
     def is_valid_position(self, x: int, y: int):
         """Check if the given position is valid for the map.
@@ -24,4 +24,4 @@ class Table:
         Returns:
             True if the position is valid, False otherwise
         """
-        return 0 <= x < self.width and 0 <= y < self.height
+        return 0 <= x < self.width and 0 <= y < self.length

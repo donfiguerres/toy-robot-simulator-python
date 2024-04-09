@@ -2,5 +2,5 @@
 
 import os
 
-MAX_WIDTH = int(os.getenv("MAX_WIDTH", "5"))
-MAX_LENGTH = int(os.getenv("MAX_LENGTH", "5"))
+TABLE_WIDTH = int(os.getenv("TABLE_WIDTH", "5"))  # x-axis
+TABLE_LENGTH = int(os.getenv("TABLE_LENGTH", "5"))  # y-axis
