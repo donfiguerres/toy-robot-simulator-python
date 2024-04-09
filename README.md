@@ -64,6 +64,13 @@ requirements.
 - The controller component contains the the interconnection between the model and view
 components.
 
+### Project Structure
+
+The project structure mirrors the components in the MVC framework. However, it was
+decided to use `domain` for the directory containing domain models instead of `model`
+so that the terminology is closer to the Domain Driven Design philosophy and also to
+avoid being associated with ORM models.
+
 ## Development Considerations
 
 ### Behavior Driven Development
