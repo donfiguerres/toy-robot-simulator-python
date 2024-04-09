@@ -1,24 +1,14 @@
+"""Tests for the controller"""
+
 import pytest
 
-from toy_robot_simulator.controller import CommandInput, main_controller
+from toy_robot_simulator.controller import main_controller
 from toy_robot_simulator.domain.command import Command
 from toy_robot_simulator.domain.position import Direction, Position
 from toy_robot_simulator.domain.robot import Robot
 from toy_robot_simulator.domain.table import Table
 from toy_robot_simulator.parser import ParsedCommand
-
-
-def test_command_input(mocker):
-    """Test reading from input()"""
-    mocker.patch("builtins.input", return_value="PLACE 0,0,NORTH")
-    command_input = CommandInput()
-
-    place_command = command_input.get_next_command()
-    assert place_command.command == Command.PLACE
-    position = place_command.args["position"]
-    assert position.x == 0
-    assert position.y == 0
-    assert position.direction == Direction.NORTH
+from toy_robot_simulator.view.input import CommandInput
 
 
 @pytest.mark.parametrize(
