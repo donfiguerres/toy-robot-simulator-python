@@ -22,14 +22,20 @@ class CommandInput:
         self._get_from_stdin = not commands
 
     def get_input(self) -> Optional[ParsedCommand]:
-        """Gets user input and returns a ParsedCommand"""
+        """Gets user input and returns a ParsedCommand.
+
+        None return signifies end of input.
+
+        Returns:
+            ParsedCommand object or None
+        """
         if self._get_from_stdin:
             return parse_line(input())
 
         if self._commands:
             command = self._commands.pop(0)
             return command
-        # None return to signifies end of input
+
         return None
 
 
