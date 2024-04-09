@@ -3,15 +3,12 @@
 The parser is designed to be robust to user input and will ignore unknown commands.
 """
 
-from logging import getLogger
 from typing import Any, Dict, Optional
 
 
 from toy_robot_simulator.exception import ParsingError
 from toy_robot_simulator.model.command import Command
 from toy_robot_simulator.model.position import Direction, Position
-
-LOG = getLogger()
 
 
 class ParsedCommand:
@@ -56,5 +53,4 @@ def parse_line(command_line: str) -> ParsedCommand:
         return ParsedCommand(enum_command)
 
     except ValueError as error:
-        LOG.error("Invalid command: %s", command_line)
         raise ParsingError("Invalid command") from error
