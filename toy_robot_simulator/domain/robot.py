@@ -1,6 +1,5 @@
 """Representation of a Toy Robot"""
 
-from typing import Optional
 from toy_robot_simulator.domain.position import (
     calculate_new_position_after_move,
     Direction,
