@@ -1,21 +1,21 @@
-"""Model definitions for where a toy robot can move around"""
+"""Model definitions for the environment where a toy robot can move around"""
 
 
 class Table:
     """Representation of an environment where a toy robot can move."""
 
     def __init__(self, width: int, length: int):
-        """Create a new map with the given dimensions.
+        """Create a new table with the given dimensions.
 
         Args:
-            width: width of the map - x-axis (EAST to WEST)
-            length: length of the map - y-axis (NORTH to SOUTH)
+            width: width of the table - x-axis (EAST to WEST)
+            length: length of the table - y-axis (NORTH to SOUTH)
         """
         self.width = width
         self.length = length
 
     def is_valid_position(self, x: int, y: int):
-        """Check if the given position is valid for the map.
+        """Check if the given position is valid for the table.
 
         Args:
             x: The x coordinate
