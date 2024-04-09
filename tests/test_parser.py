@@ -4,49 +4,54 @@ import pytest
 
 from toy_robot_simulator.exception import ParsingError
 from toy_robot_simulator.model.command import Command
-from toy_robot_simulator.model.position import Direction
+from toy_robot_simulator.model.position import Direction, Position
 from toy_robot_simulator.parser import parse_line, ParsedCommand
 
 
 @pytest.mark.parametrize(
-    ("line", "expected"),
+    ("line", "expected_command", "expected_args"),
     (
         (
             "PLACE 1,2,NORTH",
-            ParsedCommand(Command.PLACE, [1, 2, Direction.NORTH]),
+            Command.PLACE,
+            {"position": Position(1, 2, Direction.NORTH)},
         ),
         (
             "PLACE 1, 2, NORTH",
-            ParsedCommand(Command.PLACE, [1, 2, Direction.NORTH]),
+            Command.PLACE,
+            {"position": Position(1, 2, Direction.NORTH)},
         ),
         (
             "PLACE 1, 2, NORTH",
-            ParsedCommand(Command.PLACE, [1, 2, Direction.NORTH]),
+            Command.PLACE,
+            {"position": Position(1, 2, Direction.NORTH)},
         ),
         (
             "     PLACE 1, 2, NORTH    ",
-            ParsedCommand(Command.PLACE, [1, 2, Direction.NORTH]),
+            Command.PLACE,
+            {"position": Position(1, 2, Direction.NORTH)},
         ),
         (
             "place 1, 2, north",
-            ParsedCommand(Command.PLACE, [1, 2, Direction.NORTH]),
+            Command.PLACE,
+            {"position": Position(1, 2, Direction.NORTH)},
         ),
-        ("MOVE", ParsedCommand(Command.MOVE)),
-        ("move", ParsedCommand(Command.MOVE)),
-        ("LEFT", ParsedCommand(Command.LEFT)),
-        ("left", ParsedCommand(Command.LEFT)),
-        ("RIGHT", ParsedCommand(Command.RIGHT)),
-        ("right", ParsedCommand(Command.RIGHT)),
-        ("REPORT", ParsedCommand(Command.REPORT)),
-        ("     REPORT   ", ParsedCommand(Command.REPORT)),
-        ("     report   ", ParsedCommand(Command.REPORT)),
+        ("MOVE", Command.MOVE),
+        ("move", Command.MOVE),
+        ("LEFT", Command.LEFT),
+        ("left", Command.LEFT),
+        ("RIGHT", Command.RIGHT),
+        ("right", Command.RIGHT),
+        ("REPORT", Command.REPORT),
+        ("     REPORT   ", Command.REPORT),
+        ("     report   ", Command.REPORT),
     ),
 )
-def test_parse_line(line, expected):
+def test_parse_line(line, expected_command, expected_args):
     """Test the parse_line function"""
     parsed_command = parse_line(line)
-    assert parsed_command.command == expected.command
-    assert parsed_command.args == expected.args
+    assert parsed_command.command == expected_command
+    assert parsed_command.args == expected_args
 
 
 @pytest.mark.parametrize(
