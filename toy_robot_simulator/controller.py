@@ -19,7 +19,7 @@ class CommandInput:
             commands: Optional list of ParsedCommand objects.
         """
         self._commands = commands
-        self._get_from_stdin = False if commands else True
+        self._get_from_stdin = not commands
 
     def get_input(self) -> Optional[ParsedCommand]:
         """Gets user input and returns a ParsedCommand"""
