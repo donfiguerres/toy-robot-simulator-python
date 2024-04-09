@@ -4,7 +4,7 @@ The parser is designed to be robust to user input and will ignore unknown comman
 """
 
 from logging import getLogger
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 
 from toy_robot_simulator.exception import ParsingError
