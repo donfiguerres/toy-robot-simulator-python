@@ -36,6 +36,17 @@ from toy_robot_simulator.parser import ParsedCommand
         (
             [
                 ParsedCommand(
+                    Command.PLACE, args={"position": Position(0, 0, Direction.NORTH)}
+                ),
+                ParsedCommand(Command.RIGHT),
+                ParsedCommand(Command.REPORT),
+            ],
+            Position(0, 0, Direction.EAST),
+            "0,0,EAST\n",
+        ),
+        (
+            [
+                ParsedCommand(
                     Command.PLACE, args={"position": Position(1, 2, Direction.EAST)}
                 ),
                 ParsedCommand(Command.MOVE),
