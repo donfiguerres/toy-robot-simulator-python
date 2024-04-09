@@ -24,7 +24,7 @@ class CommandInput:
         self._commands = commands
         self._get_from_stdin = not commands
 
-    def get_input(self) -> Optional[ParsedCommand]:
+    def get_next_command(self) -> Optional[ParsedCommand]:
         """Gets user input and returns a ParsedCommand.
 
         None return signifies end of input.
@@ -46,7 +46,7 @@ def main_controller(command_input: CommandInput, robot: Robot) -> None:
     """Main application controller"""
     while True:
         try:
-            command = command_input.get_input()
+            command = command_input.get_next_command()
             if command is None:
                 break
 
