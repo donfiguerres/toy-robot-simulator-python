@@ -12,52 +12,49 @@ def test_robot_init():
     assert robot.is_placed is False
 
 
-def test_robot_move(capsys):
+def test_robot_move():
     """Test movement of robot"""
     table = Table(5, 5)
     robot = Robot(table)
 
     robot.place(Position(0, 0, Direction.NORTH))
     robot.move()
-    robot.report()
+    report = robot.report()
 
     assert robot.position.x == 0
     assert robot.position.y == 1
     assert robot.position.direction == Direction.NORTH
-    captured = capsys.readouterr()
-    assert captured.out == "0,1,NORTH\n"
+    assert report == "0,1,NORTH"
 
 
-def test_robot_rotate_left(capsys):
+def test_robot_rotate_left():
     """Test rotate left rotate motion of robot"""
     table = Table(5, 5)
     robot = Robot(table)
 
     robot.place(Position(0, 0, Direction.NORTH))
     robot.left()
-    robot.report()
+    report = robot.report()
 
     assert robot.position.x == 0
     assert robot.position.y == 0
     assert robot.position.direction == Direction.WEST
-    captured = capsys.readouterr()
-    assert captured.out == "0,0,WEST\n"
+    assert report == "0,0,WEST"
 
 
-def test_robot_rotate_right(capsys):
+def test_robot_rotate_right():
     """Test rotate right rotate motion of robot"""
     table = Table(5, 5)
     robot = Robot(table)
 
     robot.place(Position(0, 0, Direction.NORTH))
     robot.right()
-    robot.report()
+    report = robot.report()
 
     assert robot.position.x == 0
     assert robot.position.y == 0
     assert robot.position.direction == Direction.EAST
-    captured = capsys.readouterr()
-    assert captured.out == "0,0,EAST\n"
+    assert report == "0,0,EAST"
 
 
 def test_robot_combination(capsys):
@@ -70,16 +67,15 @@ def test_robot_combination(capsys):
     robot.move()
     robot.left()
     robot.move()
-    robot.report()
+    report = robot.report()
 
     assert robot.position.x == 3
     assert robot.position.y == 3
     assert robot.position.direction == Direction.NORTH
-    captured = capsys.readouterr()
-    assert captured.out == "3,3,NORTH\n"
+    assert report == "3,3,NORTH"
 
 
-def test_ignore_instructions_before_place(capsys):
+def test_ignore_instructions_before_place():
     """Validate that commands given before the place command are ignored"""
     table = Table(5, 5)
     robot = Robot(table)
@@ -92,13 +88,12 @@ def test_ignore_instructions_before_place(capsys):
     robot.move()
     robot.left()
     robot.move()
-    robot.report()
+    report = robot.report()
 
     assert robot.position.x == 3
     assert robot.position.y == 3
     assert robot.position.direction == Direction.NORTH
-    captured = capsys.readouterr()
-    assert captured.out == "3,3,NORTH\n"
+    assert report == "3,3,NORTH"
 
 
 def test_ignore_invalid_placement():

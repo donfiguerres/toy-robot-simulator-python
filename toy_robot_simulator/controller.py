@@ -12,7 +12,9 @@ from toy_robot_simulator.view.output import Presentation
 LOG = getLogger()
 
 
-def main_controller(command_input: CommandInput, robot: Robot) -> None:
+def main_controller(
+    command_input: CommandInput, presentation: Presentation, robot: Robot
+) -> None:
     """Main application controller"""
     while True:
         try:
@@ -32,7 +34,7 @@ def main_controller(command_input: CommandInput, robot: Robot) -> None:
             elif command.command == Command.RIGHT:
                 robot.right()
             elif command.command == Command.REPORT:
-                robot.report()
+                presentation.present(robot.report())
 
         # This application needs to be robust against bad user input so we just
         # continue parsing the next command after a bad input

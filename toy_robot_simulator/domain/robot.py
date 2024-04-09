@@ -1,5 +1,6 @@
 """Representation of a Toy Robot"""
 
+from typing import Optional
 from toy_robot_simulator.domain.position import (
     calculate_new_position_after_move,
     Direction,
@@ -41,9 +42,10 @@ class Robot:
         if self.is_placed:
             self.position = rotate_right(self.position)
 
-    def report(self) -> None:
+    def report(self) -> str:
         """Print the current position of the robot."""
         if self.is_placed:
-            print(
+            return (
                 f"{self.position.x},{self.position.y},{self.position.direction.value}"
             )
+        return ""

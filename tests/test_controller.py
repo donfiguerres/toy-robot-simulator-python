@@ -9,6 +9,7 @@ from toy_robot_simulator.domain.robot import Robot
 from toy_robot_simulator.domain.table import Table
 from toy_robot_simulator.parser import ParsedCommand
 from toy_robot_simulator.view.input import CommandInput
+from toy_robot_simulator.view.output import Presentation
 
 
 @pytest.mark.parametrize(
@@ -83,9 +84,10 @@ def test_main_controller(capsys, commands, expected_position, expected_output):
     """
     table = Table(5, 5)
     robot = Robot(table)
+    presentation = Presentation()
     command_input = CommandInput(commands)
 
-    main_controller(command_input, robot)
+    main_controller(command_input, presentation, robot)
 
     position = robot.position
     assert position.x == expected_position.x
