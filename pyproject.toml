@@ -8,6 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 click = "^8.1.7"
+mypy = "^1.9.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.3.0"
@@ -20,3 +21,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 toy-robot-simulator = "toy_robot_simulator.app:main"
+
+[tool.mypy]
+exclude = "tests"
