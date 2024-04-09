@@ -28,8 +28,8 @@ def test_robot_move(capsys):
     assert captured.out == "0,1,NORTH\n"
 
 
-def test_robot_rotate(capsys):
-    """Test rotate motion of robot"""
+def test_robot_rotate_left(capsys):
+    """Test rotate left rotate motion of robot"""
     table = Table(5, 5)
     robot = Robot(table)
 
@@ -42,6 +42,22 @@ def test_robot_rotate(capsys):
     assert robot.position.direction == Direction.WEST
     captured = capsys.readouterr()
     assert captured.out == "0,0,WEST\n"
+
+
+def test_robot_rotate_right(capsys):
+    """Test rotate right rotate motion of robot"""
+    table = Table(5, 5)
+    robot = Robot(table)
+
+    robot.place(Position(0, 0, Direction.NORTH))
+    robot.right()
+    robot.report()
+
+    assert robot.position.x == 0
+    assert robot.position.y == 0
+    assert robot.position.direction == Direction.EAST
+    captured = capsys.readouterr()
+    assert captured.out == "0,0,EAST\n"
 
 
 def test_robot_combination(capsys):
