@@ -67,6 +67,7 @@ def test_parse_line(line, expected_command, expected_args):
         "INVALID",
         "    INVALID   ",
         "PLACE 1+2,NORTH",
+        "PLACE ",
         "MOVE 1,2,NORTH",
         "LEFT 1,2,NORTH",
         "REPORT LEFT",
