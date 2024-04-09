@@ -5,7 +5,7 @@ import pytest
 from toy_robot_simulator.exception import ParsingError
 from toy_robot_simulator.model.command import Command
 from toy_robot_simulator.model.position import Direction, Position
-from toy_robot_simulator.parser import parse_line, ParsedCommand
+from toy_robot_simulator.parser import parse_line
 
 
 @pytest.mark.parametrize(
@@ -36,22 +36,29 @@ from toy_robot_simulator.parser import parse_line, ParsedCommand
             Command.PLACE,
             {"position": Position(1, 2, Direction.NORTH)},
         ),
-        ("MOVE", Command.MOVE),
-        ("move", Command.MOVE),
-        ("LEFT", Command.LEFT),
-        ("left", Command.LEFT),
-        ("RIGHT", Command.RIGHT),
-        ("right", Command.RIGHT),
-        ("REPORT", Command.REPORT),
-        ("     REPORT   ", Command.REPORT),
-        ("     report   ", Command.REPORT),
+        ("MOVE", Command.MOVE, None),
+        ("move", Command.MOVE, None),
+        ("LEFT", Command.LEFT, None),
+        ("left", Command.LEFT, None),
+        ("RIGHT", Command.RIGHT, None),
+        ("right", Command.RIGHT, None),
+        ("REPORT", Command.REPORT, None),
+        ("     REPORT   ", Command.REPORT, None),
+        ("     report   ", Command.REPORT, None),
     ),
 )
 def test_parse_line(line, expected_command, expected_args):
     """Test the parse_line function"""
     parsed_command = parse_line(line)
     assert parsed_command.command == expected_command
-    assert parsed_command.args == expected_args
+    if expected_args is None:
+        assert parsed_command.args is None
+    else:
+        parsed_position = parsed_command.args["position"]
+        expected_position = expected_args["position"]
+        assert parsed_position.x == expected_position.x
+        assert parsed_position.y == expected_position.y
+        assert parsed_position.direction == expected_position.direction
 
 
 @pytest.mark.parametrize(

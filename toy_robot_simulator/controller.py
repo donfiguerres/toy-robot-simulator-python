@@ -5,7 +5,6 @@ from typing import List, Optional
 from toy_robot_simulator.exception import ParsingError
 from toy_robot_simulator.model.command import Command
 from toy_robot_simulator.model.robot import Robot
-from toy_robot_simulator.model.position import Position
 from toy_robot_simulator.parser import parse_line, ParsedCommand
 
 
@@ -48,7 +47,9 @@ def main_controller(command_input: CommandInput, robot: Robot) -> None:
                 break
 
             if command.command == Command.PLACE:
-                position = Position(command.args[0], command.args[1], command.args[2])
+                if not command.args or ("position" not in command.args):
+                    raise ParsingError("Invalid command arguments")
+                position = command.args["position"]
                 robot.place(position)
             elif command.command == Command.MOVE:
                 robot.move()
