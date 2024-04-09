@@ -1,11 +1,15 @@
 """Handles application logic"""
 
+from logging import getLogger
 from typing import List, Optional
 
 from toy_robot_simulator.exception import ParsingError
 from toy_robot_simulator.model.command import Command
 from toy_robot_simulator.model.robot import Robot
 from toy_robot_simulator.parser import parse_line, ParsedCommand
+
+
+LOG = getLogger()
 
 
 class CommandInput:
@@ -60,10 +64,10 @@ def main_controller(command_input: CommandInput, robot: Robot) -> None:
             elif command.command == Command.REPORT:
                 robot.report()
 
-        # This application needs to be robust against bad user input so we just ignore
-        # bad input then continue.
-        except ParsingError:
-            pass
+        # This application needs to be robust against bad user input so we just
+        # continue parsing the next command after a bad input
+        except ParsingError as error:
+            LOG.error(error)
         except KeyboardInterrupt:
             print("Exiting...")
             break

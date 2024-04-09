@@ -58,6 +58,19 @@ from toy_robot_simulator.parser import ParsedCommand
             Position(3, 3, Direction.NORTH),
             "3,3,NORTH\n",
         ),
+        (
+            [
+                # Invalid command should be ignored
+                ParsedCommand(Command.PLACE),
+                ParsedCommand(
+                    Command.PLACE, args={"position": Position(0, 0, Direction.NORTH)}
+                ),
+                ParsedCommand(Command.MOVE),
+                ParsedCommand(Command.REPORT),
+            ],
+            Position(0, 1, Direction.NORTH),
+            "0,1,NORTH\n",
+        ),
     ),
 )
 def test_main_controller(capsys, commands, expected_position, expected_output):
