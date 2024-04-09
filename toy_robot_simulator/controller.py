@@ -63,3 +63,6 @@ def main_controller(command_input: CommandInput, robot: Robot) -> None:
         # bad input then continue.
         except ParsingError:
             pass
+        except KeyboardInterrupt:
+            print("Exiting...")
+            break
