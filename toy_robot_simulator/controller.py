@@ -4,8 +4,8 @@ from logging import getLogger
 from typing import List, Optional
 
 from toy_robot_simulator.exception import ParsingError
-from toy_robot_simulator.model.command import Command
-from toy_robot_simulator.model.robot import Robot
+from toy_robot_simulator.domain.command import Command
+from toy_robot_simulator.domain.robot import Robot
 from toy_robot_simulator.parser import parse_line, ParsedCommand
 
 

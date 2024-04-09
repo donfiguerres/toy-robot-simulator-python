@@ -1,8 +1,8 @@
 """Tests for the toy robot"""
 
-from toy_robot_simulator.model.position import Direction, Position
-from toy_robot_simulator.model.robot import Robot
-from toy_robot_simulator.model.table import Table
+from toy_robot_simulator.domain.position import Direction, Position
+from toy_robot_simulator.domain.robot import Robot
+from toy_robot_simulator.domain.table import Table
 
 
 def test_robot_init():

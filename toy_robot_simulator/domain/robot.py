@@ -1,13 +1,13 @@
 """Representation of a Toy Robot"""
 
-from toy_robot_simulator.model.position import (
+from toy_robot_simulator.domain.position import (
     calculate_new_position_after_move,
     Direction,
     Position,
     rotate_left,
     rotate_right,
 )
-from toy_robot_simulator.model.table import Table
+from toy_robot_simulator.domain.table import Table
 
 
 class Robot:

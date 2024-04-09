@@ -2,7 +2,7 @@
 
 import pytest
 
-from toy_robot_simulator.model.position import (
+from toy_robot_simulator.domain.position import (
     calculate_new_position_after_move,
     Direction,
     Position,

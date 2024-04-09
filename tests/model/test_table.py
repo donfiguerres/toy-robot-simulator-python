@@ -2,7 +2,7 @@
 
 import pytest
 
-from toy_robot_simulator.model.table import Table
+from toy_robot_simulator.domain.table import Table
 
 
 @pytest.mark.parametrize(

@@ -3,8 +3,8 @@
 import pytest
 
 from toy_robot_simulator.exception import ParsingError
-from toy_robot_simulator.model.command import Command
-from toy_robot_simulator.model.position import Direction, Position
+from toy_robot_simulator.domain.command import Command
+from toy_robot_simulator.domain.position import Direction, Position
 from toy_robot_simulator.parser import parse_line
 
 

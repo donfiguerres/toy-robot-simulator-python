@@ -1,8 +1,8 @@
 """Application entry point"""
 
 from toy_robot_simulator.config import TABLE_WIDTH, TABLE_LENGTH
-from toy_robot_simulator.model.robot import Robot
-from toy_robot_simulator.model.table import Table
+from toy_robot_simulator.domain.robot import Robot
+from toy_robot_simulator.domain.table import Table
 from toy_robot_simulator.controller import CommandInput, main_controller
 
 
