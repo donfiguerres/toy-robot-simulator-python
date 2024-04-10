@@ -57,7 +57,7 @@ def test_robot_rotate_right():
     assert report == "0,0,EAST"
 
 
-def test_robot_combination(capsys):
+def test_robot_combination():
     """Test combination of motion and rotation of the robot"""
     table = Table(5, 5)
     robot = Robot(table)
@@ -101,5 +101,31 @@ def test_ignore_invalid_placement():
     table = Table(5, 5)
     robot = Robot(table)
 
-    robot.place(Position(6, 6, Direction.EAST))
+    robot.place(Position(5, 5, Direction.EAST))
+
     assert robot.is_placed is False
+
+
+def test_ignore_invalid_move():
+    """Validate that invalid move is ignored."""
+    table = Table(5, 5)
+    robot = Robot(table)
+
+    robot.place(Position(4, 4, Direction.EAST))
+    robot.move()
+
+    assert robot.is_placed is True
+    assert robot.position.x == 4
+    assert robot.position.y == 4
+    assert robot.position.direction == Direction.EAST
+
+
+def test_no_report_if_not_placed():
+    """Validate that the report command is ignored if the robot is not placed."""
+    table = Table(5, 5)
+    robot = Robot(table)
+
+    report = robot.report()
+
+    assert robot.is_placed is False
+    assert report == ""
