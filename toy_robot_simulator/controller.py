@@ -12,10 +12,16 @@ from toy_robot_simulator.view.output import Presentation
 LOG = getLogger()
 
 
-def main_controller(
+def cli_controller(
     command_input: CommandInput, presentation: Presentation, robot: Robot
 ) -> None:
-    """Main application controller"""
+    """CLI application controller
+
+    Args:
+        command_input: Command input instance
+        presentation: Presentation instance
+        robot: Robot instance
+    """
     while True:
         try:
             command = command_input.get_next_command()
