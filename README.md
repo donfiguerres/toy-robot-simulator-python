@@ -111,7 +111,8 @@ You can install poetry using the official installer by running the following com
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-Follow the instructions in ...
+You may also follow the instructions in
+[https://python-poetry.org/docs/#installation](https://python-poetry.org/docs/#installation).
 
 ## Setting Up the Application
 
