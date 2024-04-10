@@ -55,6 +55,8 @@ the Domain Entities section for more details about the domain entities.
 ### Architecture
 
 The Model-View-Controller (MVC) Framework is the architecture followed in this project.
+This is a tried and tested architecture that provides better maintainability of a
+software project due to separation of concerns.
 
 - The model component, not to be confused with ORM models, refers to the domain entities
 being modeled in the application - already discussed in the previous section.
