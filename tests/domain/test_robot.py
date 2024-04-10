@@ -9,7 +9,7 @@ def test_robot_init():
     """Test the robot initialization"""
     table = Table(5, 5)
     robot = Robot(table)
-    assert robot.is_placed is False
+    assert robot.position is None
 
 
 def test_robot_move():
@@ -103,7 +103,7 @@ def test_ignore_invalid_placement():
 
     robot.place(Position(5, 5, Direction.EAST))
 
-    assert robot.is_placed is False
+    assert robot.position is None
 
 
 def test_ignore_invalid_move():
@@ -114,7 +114,7 @@ def test_ignore_invalid_move():
     robot.place(Position(4, 4, Direction.EAST))
     robot.move()
 
-    assert robot.is_placed is True
+    assert robot.position is not None
     assert robot.position.x == 4
     assert robot.position.y == 4
     assert robot.position.direction == Direction.EAST
@@ -127,5 +127,5 @@ def test_no_report_if_not_placed():
 
     report = robot.report()
 
-    assert robot.is_placed is False
+    assert robot.position is None
     assert report == ""
