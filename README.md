@@ -188,7 +188,7 @@ stdout:
 3,3,NORTH
 ```
 
-## Development
+## Development Guide
 
 ### Running the Test
 
