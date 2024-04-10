@@ -17,6 +17,7 @@ from toy_robot_simulator.domain.table import Table
         (4, -1, False),
     ),
 )
-def test_table(x, y, expected):
+def test_is_valid_position(x, y, expected):
+    """Test valid positions in a table"""
     table = Table(5, 5)
     assert table.is_valid_position(x, y) == expected
