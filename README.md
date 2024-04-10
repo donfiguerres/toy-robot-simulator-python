@@ -207,7 +207,7 @@ pytest tests
 Running the tests with coverage report to stdout.
 
 ```bash
-pytest --cov=toy_robot_simulator
+pytest --cov=toy_robot_simulator tests
 ```
 
 Running the tests with HTML format coverage report.
