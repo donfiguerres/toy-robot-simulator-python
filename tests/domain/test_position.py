@@ -59,7 +59,7 @@ def test_right(direction, expected):
         (Position(0, 0, Direction.SOUTH), Position(0, -1, Direction.SOUTH)),
     ),
 )
-def test_move(old_position, expected_position):
-    """Test the move."""
+def test_calculate_new_position_after_move(old_position, expected_position):
+    """Test calculation of new position after a move."""
     new_position = calculate_new_position_after_move(old_position)
     assert new_position == expected_position
