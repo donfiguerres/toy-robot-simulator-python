@@ -5,5 +5,9 @@ class Presentation:
     """Abstraction layer for output to be presented to the user."""
 
     def present(self, output: str):
-        """Present given string to the user."""
+        """Present given string to the user.
+
+        Args:
+            output: The information to be presented to the user.
+        """
         print(output)
