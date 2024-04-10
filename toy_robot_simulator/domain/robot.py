@@ -49,10 +49,9 @@ class Robot:
         if self.position:
             self.position = rotate_right(self.position)
 
-    def report(self) -> str:
-        """Return the current position of the robot as string."""
-        if self.position:
-            return (
-                f"{self.position.x},{self.position.y},{self.position.direction.value}"
-            )
-        return ""
+    def report(self) -> Optional[Position]:
+        """Return the current position of the robot.
+
+        If the robot has not been placed yet then the position is None.
+        """
+        return self.position

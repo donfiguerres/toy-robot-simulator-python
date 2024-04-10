@@ -1,5 +1,6 @@
 """Domain model representation of positions and movements"""
 
+from dataclasses import dataclass
 from enum import Enum
 
 
@@ -12,13 +13,13 @@ class Direction(Enum):
     WEST = "WEST"
 
 
+@dataclass(frozen=True)
 class Position:
     """Domain model representation of a robot's position"""
 
-    def __init__(self, x: int, y: int, direction: Direction):
-        self.x = x
-        self.y = y
-        self.direction = direction
+    x: int
+    y: int
+    direction: Direction
 
 
 def rotate_left(position: Position) -> Position:

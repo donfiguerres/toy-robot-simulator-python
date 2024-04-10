@@ -1,13 +1,16 @@
 """Handles output to be presented to the user"""
 
+from toy_robot_simulator.domain.position import Position
+
 
 class Presentation:
     """Abstraction layer for output to be presented to the user."""
 
-    def present(self, output: str):
-        """Present given string to the user.
+    def render_position(self, position: Position):
+        """Present given position to the user.
 
         Args:
-            output: The information to be presented to the user.
+            position: The position to be presented to the user.
         """
-        print(output)
+        position_str = f"{position.x},{position.y},{position.direction.value}"
+        print(position_str)

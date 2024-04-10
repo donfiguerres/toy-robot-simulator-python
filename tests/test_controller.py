@@ -89,9 +89,6 @@ def test_main_controller(capsys, commands, expected_position, expected_output):
 
     cli_controller(command_input, presentation, robot)
 
-    position = robot.position
-    assert position.x == expected_position.x
-    assert position.y == expected_position.y
-    assert position.direction == expected_position.direction
+    assert robot.report() == expected_position
     captured = capsys.readouterr()
     assert captured.out == expected_output

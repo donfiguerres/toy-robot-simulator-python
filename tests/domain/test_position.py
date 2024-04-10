@@ -54,7 +54,7 @@ def test_right(direction, expected):
         (Position(1, 0, Direction.NORTH), Position(1, 1, Direction.NORTH)),
         (Position(0, 1, Direction.SOUTH), Position(0, 0, Direction.SOUTH)),
         (Position(1, 0, Direction.EAST), Position(2, 0, Direction.EAST)),
-        (Position(0, 1, Direction.WEST), Position(2, 0, Direction.WEST)),
+        (Position(0, 1, Direction.WEST), Position(-1, 1, Direction.WEST)),
         (Position(0, 0, Direction.WEST), Position(-1, 0, Direction.WEST)),
         (Position(0, 0, Direction.SOUTH), Position(0, -1, Direction.SOUTH)),
     ),
@@ -62,6 +62,4 @@ def test_right(direction, expected):
 def test_move(old_position, expected_position):
     """Test the move."""
     new_position = calculate_new_position_after_move(old_position)
-    new_position.x = expected_position.x
-    new_position.y = expected_position.y
-    new_position.direction = expected_position.direction
+    assert new_position == expected_position

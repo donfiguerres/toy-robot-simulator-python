@@ -21,10 +21,7 @@ def test_robot_move():
     robot.move()
     report = robot.report()
 
-    assert robot.position.x == 0
-    assert robot.position.y == 1
-    assert robot.position.direction == Direction.NORTH
-    assert report == "0,1,NORTH"
+    assert report == Position(0, 1, Direction.NORTH)
 
 
 def test_robot_rotate_left():
@@ -36,10 +33,7 @@ def test_robot_rotate_left():
     robot.left()
     report = robot.report()
 
-    assert robot.position.x == 0
-    assert robot.position.y == 0
-    assert robot.position.direction == Direction.WEST
-    assert report == "0,0,WEST"
+    assert report == Position(0, 0, Direction.WEST)
 
 
 def test_robot_rotate_right():
@@ -51,10 +45,7 @@ def test_robot_rotate_right():
     robot.right()
     report = robot.report()
 
-    assert robot.position.x == 0
-    assert robot.position.y == 0
-    assert robot.position.direction == Direction.EAST
-    assert report == "0,0,EAST"
+    assert report == Position(0, 0, Direction.EAST)
 
 
 def test_robot_combination():
@@ -69,10 +60,7 @@ def test_robot_combination():
     robot.move()
     report = robot.report()
 
-    assert robot.position.x == 3
-    assert robot.position.y == 3
-    assert robot.position.direction == Direction.NORTH
-    assert report == "3,3,NORTH"
+    assert report == Position(3, 3, Direction.NORTH)
 
 
 def test_ignore_instructions_before_place():
@@ -90,10 +78,7 @@ def test_ignore_instructions_before_place():
     robot.move()
     report = robot.report()
 
-    assert robot.position.x == 3
-    assert robot.position.y == 3
-    assert robot.position.direction == Direction.NORTH
-    assert report == "3,3,NORTH"
+    assert report == Position(3, 3, Direction.NORTH)
 
 
 def test_ignore_invalid_placement():
@@ -114,10 +99,7 @@ def test_ignore_invalid_move():
     robot.place(Position(4, 4, Direction.EAST))
     robot.move()
 
-    assert robot.position is not None
-    assert robot.position.x == 4
-    assert robot.position.y == 4
-    assert robot.position.direction == Direction.EAST
+    assert robot.position == Position(4, 4, Direction.EAST)
 
 
 def test_no_report_if_not_placed():
@@ -127,5 +109,4 @@ def test_no_report_if_not_placed():
 
     report = robot.report()
 
-    assert robot.position is None
-    assert report == ""
+    assert report is None

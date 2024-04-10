@@ -40,7 +40,8 @@ def cli_controller(
             elif command.command == Command.RIGHT:
                 robot.right()
             elif command.command == Command.REPORT:
-                presentation.present(robot.report())
+                if position := robot.report():
+                    presentation.render_position(position)
 
         # This application needs to be robust against bad user input so we just
         # continue parsing the next command after a bad input

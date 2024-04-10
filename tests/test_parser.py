@@ -56,9 +56,7 @@ def test_parse_line(line, expected_command, expected_args):
     else:
         parsed_position = parsed_command.args["position"]
         expected_position = expected_args["position"]
-        assert parsed_position.x == expected_position.x
-        assert parsed_position.y == expected_position.y
-        assert parsed_position.direction == expected_position.direction
+        assert expected_position == parsed_position
 
 
 @pytest.mark.parametrize(
