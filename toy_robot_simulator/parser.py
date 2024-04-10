@@ -79,6 +79,7 @@ def parse_line(command_line: str) -> ParsedCommand:
             position = Position(x, y, direction)
             return ParsedCommand(enum_command, {"position": position})
 
+        # This section is for commands that do not have any arguments.
         if len(unparsed_args) > 0:
             raise ParsingError("Invalid command arguments")
 
