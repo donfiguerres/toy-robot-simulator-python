@@ -187,3 +187,36 @@ stdout:
 ```bash
 3,3,NORTH
 ```
+
+## Development
+
+### Running the Test
+
+You can run the tests by running the `pytest` command. See examples below. Be
+sure to run these in your virtual environment shell.
+
+Running the tests without coverage report.
+
+```bash
+pytest tests
+```
+
+Running the tests with coverage report to stdout.
+
+```bash
+pytest --cov=toy_robot_simulator
+```
+
+Running the tests with HTML format coverage report.
+
+```bash
+pytest --cov=toy_robot_simulator --cov-report html tests
+```
+
+### Docstring
+
+The docstring format followed is the Google styleguide format.
+See [Google Styleguide](https://google.github.io/styleguide/pyguide.html) to learn more.
+
+Note that function summaries need to be in imperative mood as recommended in
+[PEP 257](https://peps.python.org/pep-0257/).
