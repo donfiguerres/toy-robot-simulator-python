@@ -41,7 +41,7 @@ ignored.
 
 ### Design Philosophy
 
-Domain Driven Design is used to model the problem domain. It is ensured that the
+Domain Driven Design (DDD) is used to model the problem domain. It is ensured that the
 implemented models closely resemble the entities mentioned in the requirements. See
 the Domain Entities section for more details about the domain entities.
 
@@ -75,7 +75,7 @@ avoid being associated with ORM models.
 
 ## Development Considerations
 
-### Behavior Driven Development
+### Behavior Driven Development (BDD)
 
 The listed expected behavior of the application from the requirements are taken and
 converted into test cases. These test cases are used as acceptance criteria.
