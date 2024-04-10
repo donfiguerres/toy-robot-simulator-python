@@ -2,7 +2,7 @@
 
 import pytest
 
-from toy_robot_simulator.controller import main_controller
+from toy_robot_simulator.controller import cli_controller
 from toy_robot_simulator.domain.command import Command
 from toy_robot_simulator.domain.position import Direction, Position
 from toy_robot_simulator.domain.robot import Robot
@@ -87,7 +87,7 @@ def test_main_controller(capsys, commands, expected_position, expected_output):
     presentation = Presentation()
     command_input = CommandInput(commands)
 
-    main_controller(command_input, presentation, robot)
+    cli_controller(command_input, presentation, robot)
 
     position = robot.position
     assert position.x == expected_position.x
